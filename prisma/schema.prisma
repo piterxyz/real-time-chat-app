@@ -1,0 +1,83 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  nickname  String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  conversations   Conversation[] @relation(fields: [conversationIds], references: [id])
+  conversationIds String[]       @db.ObjectId
+
+  seenMessages   Message[] @relation("Seen", fields: [seenMessageIds], references: [id])
+  seenMessageIds String[]  @db.ObjectId
+
+  messages               Message[]
+  outgoingFriendRequests FriendRequest[] @relation("Sender")
+  incomingFriendRequests FriendRequest[] @relation("Receiver")
+}
+
+model Message {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  seen    User[]   @relation("Seen", fields: [seenIds], references: [id])
+  seenIds String[] @db.ObjectId
+
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId String @db.ObjectId
+
+  repliedTo Reply?  @relation("RepliedByMessage")
+  repliedBy Reply[] @relation("RepliedToMessage")
+
+  conversation   Conversation @relation(fields: [conversationId], references: [id])
+  conversationId String       @db.ObjectId
+}
+
+model FriendRequest {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  sender   User   @relation("Sender", fields: [senderId], references: [id])
+  senderId String @db.ObjectId
+
+  receiver   User   @relation("Receiver", fields: [receiverId], references: [id])
+  receiverId String @db.ObjectId
+}
+
+model Reply {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  repliedTo   Message @relation("RepliedToMessage", fields: [repliedToId], references: [id])
+  repliedToId String  @unique @db.ObjectId
+
+  repliedBy   Message @relation("RepliedByMessage", fields: [repliedById], references: [id])
+  repliedById String  @unique @db.ObjectId
+}
+
+model Conversation {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  isGroup       Boolean?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  lastMessageAt DateTime @default(now())
+
+  users   User[]   @relation(fields: [userIds], references: [id])
+  userIds String[] @db.ObjectId
+
+  messages Message[]
+}
