@@ -1,7 +1,7 @@
 "use client";
 
+import acceptFriendRequest from "@/actions/acceptFriendRequest";
 import createConversation from "@/actions/createConversation";
-import deleteFriendRequest from "@/actions/deleteFriendRequest";
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 
@@ -14,7 +14,7 @@ export default function AcceptFriendRequestButton({
 }) {
     const handleAccept = () => {
         createConversation(senderId).then(() =>
-            deleteFriendRequest(senderId, receiverId)
+            acceptFriendRequest(senderId, receiverId)
         );
     };
 

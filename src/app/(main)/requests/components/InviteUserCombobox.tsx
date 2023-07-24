@@ -61,9 +61,13 @@ export default function InviteUserCombobox({
                         {users
                             .filter(
                                 (user) =>
-                                    !currentUser.outgoingFriendRequests
+                                    (!currentUser.outgoingFriendRequests
                                         .map((value) => value.receiverId)
-                                        .includes(user.id)
+                                        .includes(user.id) ||
+                                        !currentUser.incomingFriendRequests
+                                            .map((value) => value.senderId)
+                                            .includes(user.id)) &&
+                                    !currentUser.friendOfdIds.includes(user.id)
                             )
                             .map((user) => (
                                 <CommandItem

@@ -10,8 +10,10 @@ export default async function createFriendRequest(
 ) {
     const exist = await prisma.friendRequest.findFirst({
         where: {
-            senderId,
-            receiverId,
+            OR: [
+                { senderId, receiverId },
+                { senderId: receiverId, receiverId: senderId },
+            ],
         },
     });
 

@@ -9,9 +9,11 @@ export default async function RequestsPage() {
     const currentUser = await getCurrentUser();
 
     return (
-        <div className="flex h-screen max-w-screen-sm flex-1 flex-col px-6 py-6">
+        <div className="flex h-screen max-w-screen-sm flex-1 flex-col px-6 py-5 text-white">
             <div className="my-4">
-                <h2 className="text-xl font-semibold">Friend requests</h2>
+                <h2 className="text-xl font-semibold text-white">
+                    Friend requests
+                </h2>
             </div>
             <div className="flex h-1/2 flex-col">
                 <div className="flex items-center justify-between">

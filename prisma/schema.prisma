@@ -23,6 +23,11 @@ model User {
   messages               Message[]
   outgoingFriendRequests FriendRequest[] @relation("Sender")
   incomingFriendRequests FriendRequest[] @relation("Receiver")
+
+  friends      User[]   @relation("friends", fields: [friendIds], references: [id])
+  friendIds    String[] @db.ObjectId
+  friendOf     User[]   @relation("friends", fields: [friendOfdIds], references: [id])
+  friendOfdIds String[] @db.ObjectId
 }
 
 model Message {
