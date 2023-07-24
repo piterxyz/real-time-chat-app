@@ -3,6 +3,12 @@
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export default function NavigationButton({
     title,
@@ -16,19 +22,23 @@ export default function NavigationButton({
     const pathname = usePathname();
 
     return (
-        <Link
-            className={clsx(
-                "flex items-center gap-2 rounded-md p-1.5 duration-200",
-                pathname.includes(path)
-                    ? "bg-[#f5f5f4] dark:bg-[#4b4b4a]"
-                    : "hover:bg-[#f5f5f4]/50 dark:hover:bg-[#4b4b4a]/50"
-            )}
-            href={path}
-        >
-            <div className="rounded-md bg-[#ebebeb] p-2 text-black dark:bg-[#6d6d6d] dark:text-white">
-                {icon}
-            </div>
-            {title}
-        </Link>
+        <TooltipProvider>
+            <Tooltip delayDuration={0}>
+                <TooltipTrigger asChild>
+                    <Link
+                        className={clsx(
+                            "flex items-center gap-3",
+                            pathname.includes(path)
+                                ? "border-l-[3px] border-[#1d9aff] px-[26.5px] text-[#1d9aff] shadow-[inset_7px_0_2px_-7px_#1d9aff]"
+                                : "px-[29.5px] text-[#757889] hover:border-l-[3px] hover:border-[#1d9aff]/70 hover:px-[26.5px] hover:text-[#1d9aff]/70"
+                        )}
+                        href={path}
+                    >
+                        <div className="">{icon}</div>
+                    </Link>
+                </TooltipTrigger>
+                <TooltipContent>{title}</TooltipContent>
+            </Tooltip>
+        </TooltipProvider>
     );
 }

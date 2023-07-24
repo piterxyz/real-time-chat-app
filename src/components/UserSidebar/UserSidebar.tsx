@@ -10,6 +10,7 @@ export default async function UserSidebar() {
     const user = await getCurrentUser();
 
     return (
+        <div className="flex flex-col py-10">
             <NavigationContainer>
                 <NavigationButton
                     title="Conversations"
