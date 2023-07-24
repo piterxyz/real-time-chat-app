@@ -5,18 +5,22 @@ const colors = {
     purple: "bg-[#7754b2]",
 };
 
+type Status = "online" | "idle" | "busy";
+
 export default function Avatar({
     initials,
     width,
     height,
     color,
     className,
+    status,
 }: {
     initials: string;
     width: number;
     height: number;
     color: "gray" | "purple";
     className?: string;
+    status?: Status;
 }) {
     return (
         <div
@@ -24,11 +28,14 @@ export default function Avatar({
                 colors[color],
                 `w-${width}`,
                 `h-${height}`,
-                "flex items-center justify-center rounded-md text-white",
+                "relative flex items-center justify-center rounded-full text-white",
                 className
             )}
         >
-            {initials}
+            <p>{initials}</p>
+            {status && (
+                <span className="absolute right-0.5 top-0 block h-2 w-2 rounded-full bg-green-500 ring-2 ring-[#272a37]" />
+            )}
         </div>
     );
 }
