@@ -18,14 +18,10 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en" suppressHydrationWarning>
-            <body
-                className={`${inter.className} bg-[#ffffff] dark:bg-[#09090b]`}
-            >
-                <ThemeProvider attribute="class">
-                    <AuthProvider>{children}</AuthProvider>
-                    <ToasterProvider />
-                </ThemeProvider>
+        <html lang="en" suppressHydrationWarning className="dark">
+            <body className={`${inter.className} bg-[#272a37]`}>
+                <AuthProvider>{children}</AuthProvider>
+                <ToasterProvider />
             </body>
         </html>
     );
