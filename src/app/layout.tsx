@@ -1,9 +1,9 @@
-import { ThemeProvider } from "@/providers/ThemeProvider";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import AuthProvider from "@/providers/AuthProvider";
 import ToasterProvider from "@/providers/ToasterProvider";
+import ActiveStatus from "@/components/ActiveStatus";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +20,10 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning className="dark">
             <body className={`${inter.className} bg-[#272a37]`}>
-                <AuthProvider>{children}</AuthProvider>
+                <AuthProvider>
+                    <ActiveStatus />
+                    {children}
+                </AuthProvider>
                 <ToasterProvider />
             </body>
         </html>
