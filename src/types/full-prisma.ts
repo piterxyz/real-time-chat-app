@@ -11,6 +11,7 @@ export type FullUserType = User & {
     messages: FullMessageType[];
     outgoingFriendRequests: FriendRequest[];
     incomingFriendRequests: FriendRequest[];
+    friends: FullUserType[];
 };
 
 export type FullMessageType = Message & {

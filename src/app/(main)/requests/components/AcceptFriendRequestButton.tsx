@@ -13,9 +13,9 @@ export default function AcceptFriendRequestButton({
     receiverId: string;
 }) {
     const handleAccept = () => {
-        createConversation(senderId).then(() =>
-            acceptFriendRequest(senderId, receiverId)
-        );
+        createConversation({
+            userId: senderId,
+        }).then(() => acceptFriendRequest(senderId, receiverId));
     };
 
     return (
