@@ -10,7 +10,7 @@ export default async function ConversationList({
     const currentUser = await getCurrentUser();
 
     return (
-        <div>
+        <div className="flex flex-col gap-3">
             {conversations.map((value) => (
                 <ConversationCard
                     key={value.id}

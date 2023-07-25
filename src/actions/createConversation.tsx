@@ -5,12 +5,19 @@ import getCurrentUser from "./getCurrentUser";
 import prisma from "@/libs/prismadb";
 import { pusherServer } from "@/libs/pusherServer";
 
-export default async function createConversation(
-    userId: string,
-    isGroup: boolean = false,
-    members?: string[],
-    name?: string
-) {
+interface ConversationDataProps {
+    userId?: string;
+    isGroup?: boolean;
+    members?: string[];
+    name?: string;
+}
+
+export default async function createConversation({
+    userId,
+    isGroup,
+    members,
+    name,
+}: ConversationDataProps) {
     const currentUser = await getCurrentUser();
 
     if (!currentUser?.id) {

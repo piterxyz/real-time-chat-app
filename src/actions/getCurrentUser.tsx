@@ -28,6 +28,8 @@ export default async function getCurrentUser() {
                     sender: true,
                 },
             },
+            friends: true,
+            friendOf: true,
         },
     });
 
