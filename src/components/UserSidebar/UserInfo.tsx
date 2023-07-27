@@ -28,7 +28,7 @@ export default function UserInfo({ user }: { user: User }) {
                             initials={getInitials(user.nickname)}
                             height={9}
                             width={9}
-                            color="purple"
+                            color="blue"
                             status="online"
                         />
                     </DropdownMenuTrigger>

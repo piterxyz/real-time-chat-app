@@ -5,6 +5,7 @@ import GroupAvatar from "@/components/GroupAvatar";
 import useActiveList from "@/hooks/useActiveList";
 import { FullConversationType, FullUserType } from "@/types/full-prisma";
 import getInitials from "@/utils/getInitials";
+import clsx from "clsx";
 import Link from "next/link";
 import { useMemo } from "react";
 
@@ -43,11 +44,13 @@ export default function ConversationCard({
     }, [currentUser.nickname, lastMessage]);
 
     const lastMessageText = useMemo(() => {
+        console.log(lastMessage);
+
         if (conversation.isGroup && lastMessage?.content) {
             return (
                 <p>
                     <span className="text-white">
-                        {lastMessage.author.nickname}
+                        {lastMessage?.author?.nickname}
                     </span>{" "}
                     {lastMessage?.content}
                 </p>
@@ -66,7 +69,7 @@ export default function ConversationCard({
             href={`/conversations/${conversation.id}`}
             className="flex items-center justify-between rounded-2xl bg-[#323644] px-5 py-4 shadow-md"
         >
-            <div className="flex items-center justify-center gap-3 leading-6">
+            <div className="flex flex-1 items-center justify-center gap-3 truncate leading-6">
                 {conversation.isGroup ? (
                     <GroupAvatar users={conversation.users} />
                 ) : (
@@ -82,19 +85,19 @@ export default function ConversationCard({
                         }
                     />
                 )}
-                <div className="flex flex-col justify-center truncate">
-                    <p className="font-semibold">
+                <div className="flex flex-1 flex-col items-start truncate">
+                    <p className="truncate font-semibold">
                         {conversation.isGroup
                             ? conversation.name
                             : otherUser.nickname}
                     </p>
-                    <span className="w-[180px] truncate text-sm text-[#737f8f]">
+                    <span className="w-full truncate text-sm text-[#737f8f]">
                         {lastMessageText}
                     </span>
                 </div>
             </div>
             {!hasSeen && (
-                <span className="ml-4 h-3 w-3 rounded-full bg-[#19a0ff] shadow-sm shadow-[#19a0ff]"></span>
+                <span className="ml-4 h-3 w-3 rounded-full bg-[#19a0ff] shadow shadow-[#19a0ff]"></span>
             )}
         </Link>
     );

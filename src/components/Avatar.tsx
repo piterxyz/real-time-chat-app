@@ -2,7 +2,7 @@ import clsx from "clsx";
 
 const colors = {
     gray: "bg-[#343243]",
-    purple: "bg-[#7754b2]",
+    blue: "bg-[#1d90f5]",
 };
 
 type Status = "online" | "idle" | "busy";
@@ -18,7 +18,7 @@ export default function Avatar({
     initials: string;
     width: number;
     height: number;
-    color: "gray" | "purple";
+    color: "gray" | "blue";
     className?: string;
     status?: Status;
 }) {

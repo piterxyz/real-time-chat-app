@@ -22,14 +22,14 @@ export default function Header({
     const { members } = useActiveList();
 
     return (
-        <div className="flex items-center gap-3 py-8">
+        <div className="flex items-center gap-3 pb-3 pt-8">
             {conversation.isGroup ? (
                 <GroupAvatar users={conversation.users} />
             ) : (
                 <Avatar
                     initials={getInitials(otherUser.nickname)}
-                    width={10}
-                    height={10}
+                    width={12}
+                    height={12}
                     color="gray"
                     status={
                         members.includes(otherUser.id) ? "online" : undefined
