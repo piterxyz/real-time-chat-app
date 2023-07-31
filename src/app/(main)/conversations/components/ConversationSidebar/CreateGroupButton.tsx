@@ -132,14 +132,14 @@ export default function CreateGroupButton({
                                                 );
                                             return (
                                                 <div
-                                                    className="flex w-fit items-center gap-1 rounded-md border border-neutral-800 text-xs"
+                                                    className="flex w-fit items-center gap-1 rounded-md border border-gray-600 text-xs"
                                                     key={user}
                                                 >
                                                     <p className="py-1 pl-3 pr-1.5">
                                                         {userData?.nickname}
                                                     </p>
                                                     <button
-                                                        className="border-l border-neutral-800 px-1.5"
+                                                        className="border-l border-gray-600 px-1.5"
                                                         onClick={() =>
                                                             form.setValue(
                                                                 "users",
