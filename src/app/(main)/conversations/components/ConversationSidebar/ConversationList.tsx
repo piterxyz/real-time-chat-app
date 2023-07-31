@@ -52,7 +52,7 @@ export default function ConversationList({
     }, [currentUser.id]);
 
     return (
-        <div className="flex flex-col gap-3 overflow-y-auto">
+        <div className="flex flex-col gap-3 overflow-y-auto pb-[120px] lg:pb-0">
             {items.map((value) => (
                 <ConversationCard
                     key={value.id}

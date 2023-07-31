@@ -19,7 +19,7 @@ export default async function Page({
         );
 
     return (
-        <div className="flex h-screen flex-1 flex-col px-6">
+        <div className="flex h-screen w-screen flex-col px-6 lg:w-full lg:flex-1">
             <Header currentUser={currentUser} conversation={conversation} />
             <Body conversation={conversation} />
         </div>

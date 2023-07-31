@@ -44,8 +44,6 @@ export default function ConversationCard({
     }, [currentUser.nickname, lastMessage]);
 
     const lastMessageText = useMemo(() => {
-        console.log(lastMessage);
-
         if (conversation.isGroup && lastMessage?.content) {
             return (
                 <p>

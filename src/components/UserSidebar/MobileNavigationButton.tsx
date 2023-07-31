@@ -10,7 +10,7 @@ import {
     TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-export default function NavigationButton({
+export default function MobileNavigationButton({
     title,
     path,
     icon,
@@ -29,8 +29,8 @@ export default function NavigationButton({
                         className={clsx(
                             "flex items-center gap-3",
                             pathname?.includes(path)
-                                ? "border-l-[3px] border-[#1d9aff] px-[26.5px] text-[#1d9aff] shadow-[inset_7px_0_2px_-7px_#1d9aff]"
-                                : "px-[29.5px] text-[#757889] hover:border-l-[3px] hover:border-[#1d9aff]/70 hover:px-[26.5px] hover:text-[#1d9aff]/70"
+                                ? "border-b-[3px] border-[#1d9aff] py-[26.5px] text-[#1d9aff]"
+                                : "py-[29.5px] text-[#757889] hover:border-b-[3px] hover:border-[#1d9aff]/70 hover:py-[28px] hover:text-[#1d9aff]/70"
                         )}
                         href={path}
                     >

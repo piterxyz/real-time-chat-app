@@ -1,7 +1,7 @@
 import clsx from "clsx";
 
 const colors = {
-    gray: "bg-[#343243]",
+    gray: "bg-[#424656]",
     blue: "bg-[#1d90f5]",
 };
 

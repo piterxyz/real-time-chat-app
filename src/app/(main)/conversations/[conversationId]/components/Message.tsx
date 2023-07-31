@@ -26,7 +26,7 @@ export default function Message({
     const avatar = clsx(isOwn && "order-2");
     const body = clsx("flex flex-col flex-1 gap-2", isOwn && "items-end");
     const msg = clsx(
-        "text-sm w-fit break-words max-w-[50%] overflow-hidden text-white p-3 rounded-xl",
+        "text-sm w-fit break-all max-w-[50%] overflow-hidden text-white p-3 rounded-xl",
         isOwn ? "bg-[#1d90f5]" : "bg-[#424656]"
     );
 

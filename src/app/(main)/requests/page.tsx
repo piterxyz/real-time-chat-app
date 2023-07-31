@@ -9,14 +9,14 @@ export default async function RequestsPage() {
     const currentUser = await getCurrentUser();
 
     return (
-        <div className="flex h-screen max-w-screen-sm flex-1 flex-col px-6 py-5 text-white">
+        <div className="flex h-screen w-screen flex-1 flex-col px-6 py-5 text-white lg:max-w-screen-sm">
             <div className="my-4">
                 <h2 className="text-xl font-semibold text-white">
                     Friend requests
                 </h2>
             </div>
             <div className="flex h-1/2 flex-col">
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between gap-3">
                     <h3 className="text-lg font-semibold">Outgoing</h3>
                     <InviteUserCombobox
                         currentUser={currentUser}
