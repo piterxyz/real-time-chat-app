@@ -5,6 +5,7 @@ import Message from "./Message";
 import { useEffect, useRef, useState } from "react";
 import { pusherClient } from "@/libs/pusherClient";
 import markAsSeen from "@/actions/markAsSeen";
+import monthNames from "@/utils/monthNames";
 
 export default function MessageContainer({
     messages,
@@ -52,14 +53,37 @@ export default function MessageContainer({
         };
     }, [conversationId]);
 
+    const groupedMessages = {};
+    items.forEach((message) => {
+        const date = new Date(message.createdAt);
+        const formattedDate = `${
+            monthNames[date.getMonth()]
+        } ${date.getDate()}, ${date.getFullYear()}`;
+
+        if (!groupedMessages[formattedDate]) {
+            groupedMessages[formattedDate] = [];
+        }
+
+        groupedMessages[formattedDate].push(message);
+    });
+
     return (
         <div ref={bottomRef} className="my-3 flex-1 overflow-y-auto">
-            {items.map((message, i) => (
-                <Message
-                    key={message.id}
-                    message={message}
-                    isLast={i === messages.length - 1}
-                />
+            {Object.entries(groupedMessages).map(([date, messages]) => (
+                <div className="flex flex-col" key={date}>
+                    <div className="mt-3 flex items-center text-[#a9aeba]">
+                        <div className="ml-6 flex-grow border-t border-[#a9aeba]"></div>
+                        <p className="mx-4 text-sm font-medium">{date}</p>
+                        <div className="mr-6 flex-grow border-t border-[#a9aeba]"></div>
+                    </div>
+                    {messages.map((message, i) => (
+                        <Message
+                            key={message.id}
+                            message={message}
+                            isLast={i === messages.length - 1}
+                        />
+                    ))}
+                </div>
             ))}
         </div>
     );
